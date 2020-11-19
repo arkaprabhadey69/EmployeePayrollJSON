@@ -80,17 +80,12 @@ salary.addEventListener('input', function(){
 });
 
 function save(){
-    var name=document.getElementById("name").nodeValue;
-    var salary=document.getElementById("salary").nodeValue;
-    var gender=document.getElementById("gender").nodeValue;
-    var department=document.getElementById("department").nodeValue;
-    try{
-    let employeePayrollData= new EmployeePayrollData(name,salary,gender,new Date(),department);
+    var name=document.querySelector('#name').value;
+    var gender=document.querySelector('input[type=radio][name=gender]:checked').value;
+    var dept=document.querySelector('input[type=checkbox][name=department]:checked').value;
+    var salary=document.querySelector('#salary').value;
+    let employeePayrollData= new EmployeePayrollData(name,salary,gender,new Date(),dept);
     alert(employeePayrollData.name);
-}
-catch(e){
-    console.error(e);
-}
 }
 
 /*action="#" onsubmit="save();return false"*/
