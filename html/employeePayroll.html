@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900" rel="stylesheet">
     <link rel="stylesheet" href="/css/payroll.css">
+    <script defer type="text/javascript" src="/js/employee.js"></script>
     <title>Employee Payroll Form</title>
 </head>
 <body>
@@ -60,15 +61,15 @@
             <div class="row-content">
                 <label class="label text" for="department">Department</label>
                 <div>
-                    <input class="checkbox" type="checkbox" id="hr" name="hr" value="HR">
+                    <input class="checkbox" type="checkbox" id="hr" name="department" value="HR">
                     <label class="text" for="hr">HR</label>
-                    <input class="checkbox" type="checkbox" id="sales" name="sales" value="Sales">
+                    <input class="checkbox" type="checkbox" id="sales" name="department" value="Sales">
                     <label class="text" for="sales">Sales</label>
-                    <input class="checkbox" type="checkbox" id="finance" name="finance" value="Finance">
+                    <input class="checkbox" type="checkbox" id="finance" name="department" value="Finance">
                     <label class="text" for="finance">Finance</label>
-                    <input class="checkbox" type="checkbox" id="er" name="er" value="Engineer">
+                    <input class="checkbox" type="checkbox" id="er" name="department" value="Engineer">
                     <label class="text" for="er">Engineer</label>
-                    <input class="checkbox" type="checkbox" id="others" name="others" value="Others">
+                    <input class="checkbox" type="checkbox" id="others" name="department" value="Others">
                     <label class="text" for="others">Others</label>
                 </div>
             </div>
@@ -114,18 +115,18 @@
                         <option value="31">31</option>
                     </select>
                     <select id="month" name="Month">
-                        <option value="Jan">January</option>
-                        <option value="Feb">February</option>
-                        <option value="Mar">March</option>
-                        <option value="Apr">April</option>
-                        <option value="May">May</option>
-                        <option value="Jun">June</option>
-                        <option value="Jul">July</option>
-                        <option value="Aug">August</option>
-                        <option value="Sep">September</option>
-                        <option value="Oct">October</option>
-                        <option value="Nov">November</option>
-                        <option value="Dec">December</option>
+                        <option value="0">January</option>
+                        <option value="1">February</option>
+                        <option value="2">March</option>
+                        <option value="3">April</option>
+                        <option value="4">May</option>
+                        <option value="5">June</option>
+                        <option value="6">July</option>
+                        <option value="7">August</option>
+                        <option value="8">September</option>
+                        <option value="9">October</option>
+                        <option value="10">November</option>
+                        <option value="11">December</option>
                     </select>
                     <select id="year" name="Year">
                         <option value="2020">2020</option>
@@ -135,6 +136,7 @@
                         <option value="2016">2016</option>
                     </select>
                 </div>
+                <error-output class="date-error" for="startDate"></error-output>
             </div>
             <div class="row-content">
                 <label class="label text" for="notes">Notes</label>
@@ -150,11 +152,4 @@
         </form>
     </div>
 </body>
-<script>
-    const salary=document.querySelector('#salary');
-const output=document.querySelector('.salary-output');
-salary.addEventListener('input', function(){
-    output.textContent=salary.value;
-});
-</script>
 </html>
