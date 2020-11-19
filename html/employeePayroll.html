@@ -26,7 +26,64 @@
                 <label class="label text" for="name">Name</label>
                 <input class="input" type="text" id="name" name="name" placeholder="Enter your name.." required>
             </div>
+            <div class="row-content">
+                <label class="label text" for="profile">Profile Image</label>
+                <div class="profile-radio-content">
+                    <label>
+                        <input type="radio" id="profile1" name="profile" value="/assets/assets/profile-images/Ellipse -3.png" required>
+                        <img class="profile" id="image1" src="/assets/assets/profile-images/Ellipse -3.png">
+                    </label>
+                    <label>
+                        <input type="radio" id="profile2" name="profile" value="/assets/assets/profile-images/Ellipse 1.png" required>
+                        <img class="profile" id="image2" src="/assets/assets/profile-images/Ellipse 1.png">
+                    </label>
+                    <label>
+                        <input type="radio" id="profile3" name="profile" value="/assets/assets/profile-images/Ellipse -8.png" required>
+                        <img class="profile" id="image3" src="/assets/assets/profile-images/Ellipse -8.png">
+                    </label>
+                    <label>
+                        <input type="radio" id="profile4" name="profile" value="/assets/assets/profile-images/Ellipse -7.png" required>
+                        <img class="profile" id="image4" src="/assets/assets/profile-images/Ellipse -7.png">
+                    </label>
+                </div>
+            </div>
+            <div class="row-content">
+                <label class="label text" for="gender">Gender</label>
+                <div>
+                    <input type="radio" id="male" name="gender" value="male">
+                    <label class="text" for="male">Male</label>
+                    <input type="radio" id="female" name="gender" value="female">
+                    <label class="text" for="female">Female</label>
+                </div>
+            </div>
+            <div class="row-content">
+                <label class="label text" for="department">Department</label>
+                <div>
+                    <input class="checkbox" type="checkbox" id="hr" name="hr" value="HR">
+                    <label class="text" for="hr">HR</label>
+                    <input class="checkbox" type="checkbox" id="sales" name="sales" value="Sales">
+                    <label class="text" for="sales">Sales</label>
+                    <input class="checkbox" type="checkbox" id="finance" name="finance" value="Finance">
+                    <label class="text" for="finance">Finance</label>
+                    <input class="checkbox" type="checkbox" id="er" name="er" value="Engineer">
+                    <label class="text" for="er">Engineer</label>
+                    <input class="checkbox" type="checkbox" id="others" name="others" value="Others">
+                    <label class="text" for="others">Others</label>
+                </div>
+            </div>
+            <div class="row-content">
+                <label class="label text" for="salary">Salary</label>
+                <input type="range" id="salary" name="salary" min="30000" max="100000" step="100" value="40000">
+                <output class="salary-output" for="salary">40000</output>
+            </div>
         </form>
     </div>
 </body>
+<script>
+    const salary=document.querySelector('#salary');
+const output=document.querySelector('.salary-output');
+salary.addEventListener('input', function(){
+    output.textContent=salary.value;
+});
+</script>
 </html>
