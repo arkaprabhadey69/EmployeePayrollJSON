@@ -173,7 +173,7 @@ function createAndUpdateStorage(employeePayrollData){
 
 }
 
-const onReset= () => {
+const reset= () => {
     setValue('#name','');
     unsetSelectedValues('[name=gender]');
     unsetSelectedValues('[name=department');
