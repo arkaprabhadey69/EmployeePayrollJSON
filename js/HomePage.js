@@ -32,42 +32,16 @@ const createInnerHtml = () => {
         <td>${employee._salary}</td>
         <td>${employee._startDate}</td>
         <td>
-        <img name="${employee._name}" onclick="remove(this)" alt="delete" 
+        <img id="${employee._name}" onclick="remove(this)" alt="delete" 
                 src="/assets/assets/icons/delete-black-18dp.svg">
-        <img name="${employee._name}" onclick="update(this)" alt="edit" 
+        <img id="${employee._name}" onclick="update(this)" alt="edit" 
                 src="/assets/assets/icons/create-black-18dp.svg">
         </td>
       </tr>`;
   };
     document.querySelector('#table-display').innerHTML = innerHtml;
 }  
-const createEmployeePayrollJSON = () => {
-    let empPayrollListLocal = [
-        {
-            "_name": "Arkaprabha Dey",
-            "_gender": "Male",
-            "_department": [
-                "Engineering"
-            ],
-            "_salary": "400000",
-            "_startDate": "16 Dec 2018",
-            "_notes": "",
-            "_profile": "/assets/assets/profile-images/Ellipse -2.png"
-        },
-        {
-            "_name": "Dyotana Das",
-            "_gender": "Female",
-            "_department": [
-                "Sales", "Marketing"
-            ],
-            "_salary": "500000",
-            "_startDate": "19 Sept 2020",
-            "_notes": "",
-            "_profile": "/assets/assets/profile-images/Ellipse -1.png"
-        }
-    ]
-    return empPayrollListLocal;
-}
+
 const getDeptHtml = (departmentList) => {
     let deptHtml = ``;
     for (const dept of departmentList) {
@@ -75,3 +49,13 @@ const getDeptHtml = (departmentList) => {
     }
     return deptHtml;
 } 
+const remove= (node)=>{
+    let empData=empList.find(empData=>empData._name==node.id);
+    if(!empData) return;
+    const index=empList.map(empData => empData._name).indexOf(empData._name);
+    empList.splice(index,1);
+    localStorage.setItem("EmployeePayrollList",JSON.stringify(empList));
+    document.querySelector(".emp-count").textContent = empList.length;
+    createInnerHtml();
+
+}
