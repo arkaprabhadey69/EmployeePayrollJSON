@@ -62,7 +62,10 @@ const remove= (node)=>{
 const update=(node)=> {
     let empData=empList.find(empData=>empData._id==node.id);
     if(!empData) return;
-    localStorage.setItem("editEmp",JSON.stringify(empList));
+    localStorage.setItem("editEmp",JSON.stringify(empData));
+    alert("empEdit got created");
     window.location.replace(site_properties.add_emp_payroll_page);
 }
+
+
 
