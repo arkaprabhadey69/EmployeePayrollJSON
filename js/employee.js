@@ -1,20 +1,16 @@
 class EmployeePayrollData {
-
-    constructor(...params) {
-        this.name = params[0];
-        this.salary = params[1];
-        this.gender = params[2];
-        this.startDate = params[3];
-        this.department = params[4];
-        this.profile=params[5];
-        this.note=params[6];
+    get id() {
+        return this._id;
+    }
+    set id(id) {
+        this._id = id;
     }
 
     get name() {
         return this._name;
     }
     set name(name) {
-        let nameRegex = RegExp('^[A-Z]{1}[a-zA-z\\s]{2,}$');
+        let nameRegex = RegExp('^[A-Z]{1}[a-zA-Z\\s]{2,}$');
         if (nameRegex.test(name))
             this._name = name;
         else throw "Incorrect name";
@@ -73,38 +69,9 @@ class EmployeePayrollData {
         }
     }
     toString() {
-        return " Name: " + this.name + " Salary: " + this.salary + " Gender: " + this.gender + " Start Date: " + this.startDate + " Department: " + this.department+ " Profile Pic: " + this.profile+ " Notes: " + this.note;
+        return "Id: " + this.id +" Name: " + this.name + " Salary: " + this.salary + " Gender: " + this.gender + " Start Date: " + this.startDate + " Department: " + this.department+ " Profile Pic: " + this.profile+ " Notes: " + this.note;
     }
 }
-
-const salary = document.querySelector('#salary');
-const output = document.querySelector('.salary-output');
-salary.addEventListener('input', function () {
-    output.textContent = salary.value;
-});
-
-const day = document.querySelector('#day');
-const year = document.querySelector('#year');
-const month = document.querySelector('#month');
-const dateError = document.querySelector('.date-error');
-[day, month, year].forEach(item => item.addEventListener('input', function () {
-    if (month.value == 1) {
-        if (isLeapYear(year.value)) {
-            if (day.value > 29) {
-                dateError.textContent = "Invalid Date!";
-            } else dateError.textContent = "";
-        } else {
-            if (day.value > 28) {
-                dateError.textContent = "Invalid Date!";
-            } else dateError.textContent = "";
-        }
-    }
-    if (month.value == 3 || month.value == 5 || month.value == 8 || month.value == 10) {
-        if (day.value > 30) {
-            dateError.textContent = "Invalid Date!";
-        } else dateError.textContent = "";
-    }
-}));
 
 
 const isLeapYear = (year) => {
@@ -132,24 +99,27 @@ function save(){
 }
 
 const createPayroll = () => {
+    let employee = new EmployeePayrollData();
     try {
-        var name = document.querySelector('#name').value;
-        var salary = document.querySelector('#salary').value;
-        var gender=getSelectedValues('[name=gender]').pop();
+        employee.name = document.querySelector('#name').value;
+        employee.salary = document.querySelector('#salary').value;
+        employee.gender=getSelectedValues('[name=gender]').pop();
         var year = document.querySelector('#year').value;
         var month = document.querySelector('#month').value;
         var day = document.querySelector('#day').value;
-        var startDate = new Date(year, month, day);
-        var department=getSelectedValues('[name=department]');
-        var notes=document.querySelector('#notes').value;
-        var profile=getSelectedValues('[name=profile]').pop();
-        var employee = new EmployeePayrollData(name, salary, gender, startDate, department,profile,notes);
-        alert(employee);
+        employee.startDate = new Date(year, month, day);
+        employee.department=getSelectedValues('[name=department]');
+        employee.note=document.querySelector('#notes').value;
+        employee.profile=getSelectedValues('[name=profile]').pop();
+        let employeePayrollList = JSON.parse(localStorage.getItem("EmployeePayrollList"));
+        if (employeePayrollList == undefined)
+            employee.id = 1;
+        else employee.id = employeePayrollList.length + 1;
+        alert(employee.toString());
     } catch (error) {
         alert(error);
     }
     return employee;
-
 }
 
 const getSelectedValues =(propertyValue) => {
@@ -173,12 +143,13 @@ function createAndUpdateStorage(employeePayrollData){
 
 }
 
-const reset= () => {
+const resetForm= () => {
     setValue('#name','');
     unsetSelectedValues('[name=gender]');
     unsetSelectedValues('[name=department');
     unsetSelectedValues('[name=profile]');
-    setValue('#salary','');
+    setValue('#salary','40000');
+    setTextValue('.salary-output','40000')
     setValue('#notes','');
     setValue('#day','1');
     setValue('#month','0');
@@ -192,4 +163,8 @@ const unsetSelectedValues=(propertyValue)=>{
 const setValue=(id,value)=>{
     const element=document.querySelector(id);
     element.value=value;
+}
+const setTextValue = (id, value) => {
+    const element = document.querySelector(id);
+    element.textContent = value;
 }
