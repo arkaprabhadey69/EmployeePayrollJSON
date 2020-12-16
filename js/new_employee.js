@@ -24,7 +24,7 @@ salary.addEventListener('input', function () {
 output.textContent = salary.value;
 });
 
-checkForUpdates();
+ checkForUpdates();
     
 
 });

@@ -67,5 +67,3 @@ const update=(node)=> {
     window.location.replace(site_properties.add_emp_payroll_page);
 }
 
-
-

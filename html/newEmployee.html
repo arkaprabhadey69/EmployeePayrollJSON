@@ -28,19 +28,41 @@
             <div class="emp-detail-text">
                 Employee Details <div class="emp-count">10</div>
             </div>
-            <a href="/html/employeePayroll.html" class="add-button">
+            <a href="./html/employeePayroll.html" class="add-button">
                 <img src="/assets/assets/icons/add-24px.svg" alt="">Add User</a>
         </div>
         <div class="table-main">
             <table id="table-display" class="table">
+                <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Gender</th>
+                    <th>Department</th>
+                    <th>Salary</th>
+                    <th>Start Date</th>
+                    <th>Actions</th>
+                </tr>
+                <tr>
+                    <td><img class="profile" alt="" src="../assets//profile-images/Ellipse -4.png"></td>
+                    <td>Rituparna Biswas</td>
+                    <td>Male</td>
+                    <td>
+                        <div class="dept-label">Engineering</div>
+                    </td>
+                    <td>300000</td>
+                    <td>16 Dec 2018</td>
+                    <td>
+                        <img id="1" onclick="remove(this)" alt="delete" src="../assets/icons/delete-black-18dp.svg">
+                        <img id="1" onclick="update(this)" alt="edit" src="../assets/icons/create-black-18dp.svg">
+                    </td>
+                </tr>
             </table>
         </div>
     </div>
-    <script src="/js/HomePage.js"></script>
-     <script src="/js/employee.js"></script>
-    <script src="/js/new_employee.js"></script> 
-    <script src="/js/site_properties.js"></script> 
-    <script src="/js/utility.js"></script> 
+    </div>
+    <!-- <script src="/js/HomePage.js"></script>
+    <script src="/js/employee.js"></script>
+    <script src="/js/new_employee.js"></script> -->
 </body>
 
 </html>
